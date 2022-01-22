@@ -163,6 +163,62 @@ function sprite_from_path(path, ext = "png") {
 	}
 }
 
+function draw_centered_text(xpos, ypos, txt, justify) {
+	draw_text(floor(xpos + (justify / 2)), ypos, txt);
+}
+
+function draw_justified_text(xpos, ypos, txt, justify) {
+	var _c = "";
+	var _len = string_length(txt);
+	var _spaces = string_count(" ", txt);
+	
+	if(_len < 2) {
+		draw_text(xpos, ypos, txt);
+	} else {
+		for(var _i = 1; _i <= _len; _i++) {
+			_c = string_char_at(txt, _i);
+			draw_text(floor(xpos), ypos, _c);
+			if(_c == " ") {
+				xpos += string_width(_c) + (justify / _spaces);
+			} else {
+				xpos += string_width(_c);
+			}
+		}
+	}
+}
+
+function lipcode_to_index(code) {
+	var _rval = 8;
+	switch(code) {
+		case "A":
+			_rval = 0;
+			break;
+		case "B":
+			_rval = 1;
+			break;
+		case "C":
+			_rval = 2;
+			break;
+		case "D":
+			_rval = 3;
+			break;
+		case "E":
+			_rval = 4;
+			break;
+		case "F":
+			_rval = 5;
+			break;
+		case "G":
+			_rval = 6;
+			break;
+		case "H":
+			_rval = 7;
+			break;
+	}
+	
+	return _rval;
+}
+
 function speak() {
 	time_index = 0;
 	global.snd = audio_create_stream(global.lipaudio);
@@ -174,8 +230,12 @@ function speak() {
 game_set_speed(30, gamespeed_fps);
 global.liptimes = load_json("story/an_01_03.min.json");
 global.lipstory = load_json("story/an_01_03.txt.json");
+global.liplines = load_json("story/an_01_03.lines.json");
 global.lipaudio = "story/an_01_03.ogg";
-// global.lipsprite = sprite_from_path("hd/gothic/", "png");
+
+// Uncomment one of the next three lines to change the look of the sprite
+// global.lipsprite = sprite_from_path("sq1024/gothic/", "png");
+// global.lipsprite = sprite_from_path("sq1024/explosion/", "png");
 global.lipsprite = sprite_from_path("sq1024/sketch/", "jpg");
 
 global.frame = sprite_add("frame-1024.png", 1, false, false, 0, 0);
@@ -210,9 +270,12 @@ global.blurb = ["LipSprite",
                 "",
                 "The audio used in this example is 'The Merchant And The Genie', one",
                 "of the stories from 'The Arabian Nights Entertainments' obtained",
-                "from LibriVox.",
+                "from LibriVox (so the voice you hear isn't me).",
                 "",
                 "The process of creating the images and synching them to the sound",
                 "is relatively easy but time-consuming so if I can get better results",
-                "I'll write a little GUI utility to automate the boring work for you."
+                "I'll write a little GUI utility to automate the boring work for you.",
+                "",
+                "If anyone is crazy enough to find this intersting the source for",
+                "the app that produced this video is on GitHub (link below)"
                ];

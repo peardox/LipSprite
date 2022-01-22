@@ -8,3 +8,5 @@ rcnt = 0;
 dfps = 0;
 dtim = current_time;
 stim = current_time;
+lipline = 0;
+
