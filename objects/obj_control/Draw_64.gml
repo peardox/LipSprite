@@ -8,6 +8,9 @@ function toggle_playing() {
 		obj_control.dtim = current_time;
 		obj_control.stim = current_time;
 		obj_control.lipline = 0;
+	} else {
+		obj_control.speaking = false;
+		audio_stop_sound(obj_control.snd);
 	}
 }
 

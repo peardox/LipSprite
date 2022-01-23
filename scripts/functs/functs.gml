@@ -278,8 +278,7 @@ global.blurb = ["LipSprite",
                 "is relatively easy but time-consuming so if I can get better results",
                 "I'll write a little GUI utility to automate the boring work for you.",
                 "",
-                "If anyone is crazy enough to find this intersting the source for",
-                "the app that produced this video is on GitHub (link below)"
+                "Press Space (Desktop) or Tap Screen (Mobile) to begin playing"
                ];
 
 switch (os_type) {
