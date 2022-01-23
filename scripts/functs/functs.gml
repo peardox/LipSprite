@@ -220,14 +220,16 @@ function lipcode_to_index(code) {
 }
 
 function speak() {
-	time_index = 0;
+	obj_control.time_index = 0;
 	global.snd = audio_create_stream(global.lipaudio);
-	snd = audio_play_sound(global.snd, 100, false);
-	lip_frames = array_length(global.liptimes.mouthCues);
-	audio_length = audio_sound_length(global.snd);
+	obj_control.snd = audio_play_sound(global.snd, 100, false);
+	obj_control.lip_frames = array_length(global.liptimes.mouthCues);
+	obj_control.audio_length = audio_sound_length(global.snd);
 }
 
 game_set_speed(30, gamespeed_fps);
+global.is_desktop = false;
+
 global.liptimes = load_json("story/an_01_03.min.json");
 global.lipstory = load_json("story/an_01_03.txt.json");
 global.liplines = load_json("story/an_01_03.lines.json");
@@ -279,3 +281,18 @@ global.blurb = ["LipSprite",
                 "If anyone is crazy enough to find this intersting the source for",
                 "the app that produced this video is on GitHub (link below)"
                ];
+
+switch (os_type) {
+	case os_operagx:
+	case os_windows: 
+	case os_uwp:
+	case os_linux:
+	case os_macosx:
+		global.is_desktop = true;
+		break;
+	case os_tvos: 
+	case os_ios: 
+	case os_android: 
+		global.is_desktop = false; // OK, this is redundant but I'm writing it anyway
+		break;
+}

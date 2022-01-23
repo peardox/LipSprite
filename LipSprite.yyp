@@ -183,7 +183,6 @@
     {"CopyToMask":-1,"filePath":"datafiles/story","resourceVersion":"1.0","name":"an_01_03.txt.json","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/story","resourceVersion":"1.0","name":"an_01_03.lines.json","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"SourceCodePro-Regular.ttf","resourceType":"GMIncludedFile",},
-    {"CopyToMask":-1,"filePath":"datafiles/story","resourceVersion":"1.0","name":"an_01_03.lines.json.bak","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
     "IDEVersion": "2.3.7.606",

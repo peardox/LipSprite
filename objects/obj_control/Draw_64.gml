@@ -1,6 +1,16 @@
 /// @description Insert description here+
 // You can write your code in this editor
 
+function toggle_playing() {
+	obj_control.speaking = !obj_control.speaking;
+	if(obj_control.speaking) {
+		speak();
+		obj_control.dtim = current_time;
+		obj_control.stim = current_time;
+		obj_control.lipline = 0;
+	}
+}
+
 var _frame_index = 8;
 var _frame_time = 8;
 var _lips = undefined;
@@ -10,28 +20,28 @@ var _dostory = false;
 
 draw_set_font(global.fonts);
 
-if(keyboard_check_pressed(vk_escape)) {
-/* Only for building
-	save_json("lines.json", global.liplines);
-*/
-	game_end();
-}
+if(global.is_desktop) {
 
-/* Only for building
-if(keyboard_check_pressed(vk_numpad0)) {
-	var _ln = array_length(global.liplines);
-	global.liplines[_ln] = floor(current_time - stim) / 1000;
-}
-*/
+	if(keyboard_check_pressed(vk_escape)) {
+	/* Only for building
+		save_json("lines.json", global.liplines);
+	*/
+		game_end();
+	}
 
-if(keyboard_check_pressed(vk_space)) {
-	speaking = !speaking;
-	if(speaking) {
-		speak();
-		dtim = current_time;
-		stim = current_time;
-		lipline = 0;
+	/* Only for building
+	if(keyboard_check_pressed(vk_numpad0)) {
+		var _ln = array_length(global.liplines);
+		global.liplines[_ln] = floor(current_time - stim) / 1000;
+	}
+	*/
 
+	if(keyboard_check_pressed(vk_space)) {
+		toggle_playing();
+	}
+} else {
+	if(mouse_check_button_pressed(mb_left)) {
+		toggle_playing();
 	}
 }
 
